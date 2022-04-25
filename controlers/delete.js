@@ -18,6 +18,7 @@ module.exports = {
 
         } catch (error) {
             res.redirect('/404')
+
         }
     }
 };

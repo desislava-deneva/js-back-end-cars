@@ -81,6 +81,19 @@ async function deleteById(id) {
     }
 }
 
+async function updateById(id, car) {
+    const data = await read();
+
+    data[id] = car;
+
+    if (data.hasOwnProperty(id)) {
+       data[id] = car;
+      await write(data);
+    } else {
+        throw new ReferenceError('No such Id in database');
+    }
+}
+
 function nextId() {
     return 'xxxxxxxx-xxxx'.replace(/x/g, () => (Math.random() * 16 | 0).toString(16))
 }
@@ -90,7 +103,8 @@ module.exports = () => (req, res, next) => {
         getAll,
         getById,
         createCar,
-        deleteById
+        deleteById,
+        updateById
     };
     next();
 }

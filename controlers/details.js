@@ -10,5 +10,6 @@ module.exports = {
         } else {
             res.redirect('/404')
         }
+        
     }
 }
