@@ -8,7 +8,7 @@
 //--[x] read one by id
 //--[x] create
 //--[] edit
-//--[] delete
+//--[x] delete
 //--[x] search
 
 // implement controllers
@@ -17,6 +17,9 @@
 //--[x] details 
 //--[x] create 
 //--[x] improved home search
+//--[] edit 
+//--[x] delete 
+
 // [x] add frond-end code 
 
 const express = require('express')
@@ -28,6 +31,7 @@ const { about } = require('./controlers/about');
 const create = require('./controlers/create');
 const { details } = require('./controlers/details');
 const { home } = require('./controlers/home');
+const deleteCar = require('./controlers/delete');
 
 const app = express();
 
@@ -48,6 +52,10 @@ app.get('/details/:id', details);
 app.route('/create')
     .get(create.get)
     .post(create.post)
+
+app.route('/delete/:id')
+    .get(deleteCar.get)
+    .post(deleteCar.post)
 
 // app.get('/create', create.get);
 // app.get('/create', create.post);
