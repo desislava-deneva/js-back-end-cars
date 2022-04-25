@@ -74,6 +74,7 @@ div.cube {
     background: white;
     width: 23%;
     vertical-align: top;
+    width:  250px;
 }
 
 div.cube:hover p.name {
@@ -259,5 +260,13 @@ footer {
     to {
         opacity: 0;
     }
+}
+
+.description  {
+    display: none;
+}
+
+.description p {
+    margin: 10px;
 }
 

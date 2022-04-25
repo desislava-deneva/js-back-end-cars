@@ -9,13 +9,15 @@
 //--[x] create
 //--[] edit
 //--[] delete
-//--[] search
+//--[x] search
 
 // implement controllers
 //--[x] home (catalog)
 //--[x] about 
 //--[x] details 
-//--[] create 
+//--[x] create 
+//--[x] improved home search
+// [x] add frond-end code 
 
 const express = require('express')
 const hbs = require(`express-handlebars`);
