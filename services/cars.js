@@ -1,4 +1,5 @@
 const fs = require('fs/promises');
+const Car = require('../models/Car');
 
 const filePath = './services/data.json'
 
@@ -23,7 +24,20 @@ async function write(data) {
     }
 }
 
+function carViewModel(car) {
+    return {
+        id : car._id,
+        name: car.name,
+        description: car.description,
+        imageUrl: car.imageUrl,
+        price: car.price,
+    };
+}
+
 async function getAll(query) {
+    const cars = await Car.find({});
+    return cars.map(carViewModel);
+    /*
     const data = await read();
     let cars = Object.entries(data)
         .map(([id, v]) => Object.assign({}, { id }, v));
@@ -41,9 +55,19 @@ async function getAll(query) {
     }
 
     return cars
+    */
 }
 
 async function getById(id) {
+
+    const car =  await Car.findById(id);
+    
+    if(id){
+        return carViewModel(car)
+    }else{
+        return undefined;
+    }
+    /*
     const data = await read();
 
     const car = data[id];
@@ -53,11 +77,15 @@ async function getById(id) {
     } else {
         return undefined;
     }
+    */
 }
 
 async function createCar(car) {
+    const result = new Car(car);
+    await result.save();
+    
+    /*
     const cars = await read();
-
     let id;
 
     do {
@@ -66,6 +94,7 @@ async function createCar(car) {
 
     cars[id] = car;
     await write(cars);
+    */
 }
 
 async function deleteById(id) {

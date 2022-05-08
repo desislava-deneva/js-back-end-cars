@@ -26,14 +26,14 @@
 //--[] create accsssory
 //--[] attach accsesoty to car
 //--[] upgrade details to include accessory
-//--[]
 
-// [x] add frond-end code 
-//[] add database connection
-//[] create car model
+//[x] add frond-end code 
+//[x] add database connection
+//[x] create car model
 //[] upgrade car servise to use Car model
+//[] add validation rules to Car model
+
 //[] create Accsessory models
-//[] 
 
 const express = require('express')
 const hbs = require(`express-handlebars`);
