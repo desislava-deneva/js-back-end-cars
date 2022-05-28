@@ -8,7 +8,7 @@ async function read() {
         const file = await fs.readFile(filePath);
         return JSON.parse(file)
     } catch (error) {
-        console.log('Database read error: ');
+        console.log('Database read error');
         console.log(error);
         process.exit(1)
     }
@@ -18,7 +18,7 @@ async function write(data) {
     try {
         await fs.writeFile(filePath, JSON.stringify(data, null, 2));
     } catch (error) {
-        console.log('Database read error: ');
+        console.log('Database write error: ');
         console.log(error);
         process.exit(1)
     }
@@ -35,9 +35,9 @@ function carViewModel(car) {
 }
 
 async function getAll(query) {
-    const cars = await Car.find({});
-    return cars.map(carViewModel);
-    /*
+    // const cars = await Car.find({});
+    // return cars.map(carViewModel);
+    
     const data = await read();
     let cars = Object.entries(data)
         .map(([id, v]) => Object.assign({}, { id }, v));
@@ -51,11 +51,11 @@ async function getAll(query) {
     }
 
     if (query.to) {
-        cars = cars.filter(c => c.price <= Number(query.from))
+        cars = cars.filter(c => c.price <= Number(query.to))
     }
 
     return cars
-    */
+    
 }
 
 async function getById(id) {
@@ -81,10 +81,10 @@ async function getById(id) {
 }
 
 async function createCar(car) {
-    const result = new Car(car);
-    await result.save();
+    // const result = new Car(car);
+    // await result.save();
     
-    /*
+    
     const cars = await read();
     let id;
 
@@ -94,7 +94,7 @@ async function createCar(car) {
 
     cars[id] = car;
     await write(cars);
-    */
+    
 }
 
 async function deleteById(id) {

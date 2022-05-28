@@ -1,10 +1,10 @@
-module.exports={
+module.exports = {
 
-   async get(req, res){
-        res.render('create', {title: 'Create Listing'});
+    async get(req, res) {
+        res.render('create', { title: 'Create Listing' });
 
     },
-   async post(req, res){
+    async post(req, res) {
         const car = {
             name: req.body.name,
             description: req.body.description,
@@ -12,6 +12,7 @@ module.exports={
             price: Number(req.body.price),
         }
 
+        console.log(car);
         await req.storage.createCar(car);
 
         res.redirect('/');

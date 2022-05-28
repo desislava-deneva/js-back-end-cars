@@ -59,9 +59,9 @@ async function start() {
 
     app.engine('hbs', hbs.create({
         extname: '.hbs'
-    }).engine)
+    }).engine);
 
-    app.set('view engine', '.hbs')
+    app.set('view engine', '.hbs');
 
     app.use(express.urlencoded({ extended: true }));
     app.use('/static', express.static('static'));

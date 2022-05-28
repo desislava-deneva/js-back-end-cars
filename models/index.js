@@ -8,7 +8,8 @@ async function init() {
     try {
         await mongoose.connect(conectionString, {
             useNewUrlParser: true,
-            useUnifiedTopology: true
+            useUnifiedTopology: true,
+            
         });
 
         console.log('Database condected');
