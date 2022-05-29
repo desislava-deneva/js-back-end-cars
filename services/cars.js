@@ -60,14 +60,14 @@ async function getAll(query) {
 
 async function getById(id) {
 
-    const car =  await Car.findById(id);
+    // const car =  await Car.findById(id);
     
-    if(id){
-        return carViewModel(car)
-    }else{
-        return undefined;
-    }
-    /*
+    // if(id){
+    //     return carViewModel(car)
+    // }else{
+    //     return undefined;
+    // }
+    
     const data = await read();
 
     const car = data[id];
@@ -77,7 +77,7 @@ async function getById(id) {
     } else {
         return undefined;
     }
-    */
+    
 }
 
 async function createCar(car) {

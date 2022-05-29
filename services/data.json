@@ -15,12 +15,6 @@
     "name": "Toyota",
     "description": "Description Toyota ",
     "imageUrl": "toyota.jpg",
-    "price": 99999
-  },
-  "9192089e-0f13": {
-    "name": "Audi A4",
-    "description": "Description Audi A 4",
-    "imageUrl": "audi.jpg",
-    "price": 21000
+    "price": 22000
   }
 }
