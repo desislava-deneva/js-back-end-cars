@@ -33,7 +33,7 @@ header {
     list-style-type: none;
     margin: auto;
     padding: 0;
-    background-color: #607588;
+    background-color: #d14c0e;
 }
 
 header ul li {
@@ -79,7 +79,7 @@ div.cube {
 }
 
 div.cube:hover p.name {
-    background: #607588;
+    background: #9e948f;
     color: white;
 }
 
@@ -90,6 +90,17 @@ p.name {
     text-transform: uppercase;
     padding: 10px;
     border-bottom: 1px solid #2b415433;
+}
+
+button:hover {
+    background-color: #9e948f;
+    color: white;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: #9e948f;
+
 }
 
 button, main a.btn {
@@ -103,15 +114,12 @@ button, main a.btn {
     margin: 12px;
     margin-left: 6%;
     border-radius: 4px;
-    background: #607588;
+    background: #d14c0e;
     color: white;
 }
 
-button:hover {
-    background-color: #0B2133;
-    color: white;
-    cursor: pointer;
-}
+
+
 
 a {
     text-decoration: underline;
@@ -150,7 +158,7 @@ div.about a {
 }
 
 form label {
-    background: #607588;
+    background: #d14c0e;
     color: white;
     padding: 12px;
     border-top-left-radius: 4px;
@@ -179,7 +187,7 @@ input.search {
 }
 
 input[type=submit] {
-    background-color: #545775;
+    background-color: #d14c0e;
     border: none;
     padding: 8px;
     text-align: center;
@@ -194,7 +202,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    background-color: #718F94;
+    background-color: #9e948f;
     cursor: pointer;
 }
 
@@ -232,7 +240,7 @@ h2{
 }
 
 footer {
-    background: #607588;
+    background: #d14c0e;
     padding: 1em;
     text-align: center;
     color: white;

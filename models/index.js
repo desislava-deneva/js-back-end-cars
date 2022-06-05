@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-require('./Car');
+ const Car = require('./Car');
 
 const conectionString = 'mongodb://localhost:27017/carbicle';
 
@@ -8,23 +8,29 @@ async function init() {
     try {
         await mongoose.connect(conectionString, {
             useNewUrlParser: true,
-            useUnifiedTopology: true,
-            
+            useUnifiedTopology: true 
         });
 
-        console.log('Database condected');
+        console.log('Data base conneted');
 
-      
-        mongoose.connection.on('error', (error) => {
-            console.error('database error');
-            console.error(error);
+        //add car in database
+    //   await  Car.create({
+    //         "name": "Russian machine",
+    //         "description": "Description Russian Machine",
+    //         "imageUrl": "russian.jpg",
+    //         "price": 99000
+    //       })
+
+        mongoose.connection.on('error', (err)=>{
+            console.error('Database error');
+            console.error(err);
         });
 
     } catch (error) {
-        console.error('Error conecting to database');
+        console.error('Error connection to database');
         process.exit(1);
     }
-
+   
 }
 
 module.exports = init;
