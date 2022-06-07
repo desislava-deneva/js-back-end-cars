@@ -4,11 +4,11 @@ module.exports = {
         const id = req.params.id;
 
         try {
-            const [car, accessory] = await Promise.all([
+            const [car, accessories] = await Promise.all([
                 req.storage.getById(id),
                 req.accessory.getAll()
             ]);
-            res.render('attach', { title: 'Attach Accessory', car, accessory })
+            res.render('attach', { title: 'Attach Accessory', car,  accessories })
  
         } catch (error) {
             console.log(error.message);
