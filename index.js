@@ -30,17 +30,19 @@
 //[x] add frond-end code 
 //[x] add database connection
 //[x] create car model
-//[] upgrade car servise to use Car model
-//[] add validation rules to Car model
+//[x] upgrade car servise to use Car model
+//[x] add validation rules to Car model
 
-//[] create Accsessory models
+//[x] create Accsessory models
 
 const express = require('express')
 const hbs = require(`express-handlebars`);
 
 const initDb = require('./models/index');
 
-const carService = require('./services/cars')
+const carService = require('./services/cars');
+const accessoryService = require('./services/accessory');
+
 
 const { home } = require('./controlers/home');
 const { about } = require('./controlers/about');
@@ -48,9 +50,12 @@ const create = require('./controlers/create');
 const { details } = require('./controlers/details');
 const editCar = require('./controlers/edit');
 const deleteCar = require('./controlers/delete');
+const accsessory = require('./controlers/accsessory');
+const attach = require('./controlers/attach');
+
 
 const { notFound } = require('./controlers/404');
-start()
+start();
 
 async function start() {
     await initDb()
@@ -65,7 +70,8 @@ async function start() {
 
     app.use(express.urlencoded({ extended: true }));
     app.use('/static', express.static('static'));
-    app.use(carService())
+    app.use(carService());
+    app.use(accessoryService());
 
     app.get('/', home)
     app.get('/about', about);
@@ -82,6 +88,14 @@ async function start() {
     app.route('/edit/:id')
         .get(editCar.get)
         .post(editCar.post)
+
+    app.route('/accessory')
+    .get(accsessory.get)
+    .post(accsessory.post);
+
+    app.route('/attach/:id')
+    .get(attach.get)
+    .post(attach.post);
 
 
     // app.get('/create', create.get);

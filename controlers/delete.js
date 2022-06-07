@@ -18,6 +18,7 @@ module.exports = {
 
         } catch (error) {
             console.log('Attemped to delete non-existed Id :', id);
+            console.log(error.message);
             res.redirect('/404')
 
         }

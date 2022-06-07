@@ -1,30 +1,24 @@
 module.exports = {
-
-    async get(req, res) {
-        res.render('create', { title: 'Create Listing' });
-
+    get(req, res) {
+        res.render('createAccessory', { title: 'Create Accsessory' })
     },
     async post(req, res) {
-        const car = {
+        const accessory = {
             name: req.body.name,
             description: req.body.description,
             imageUrl: req.body.imageUrl || undefined,
             price: Number(req.body.price),
-        }
 
-        if (!car.imageUrl) {
-            car.imageUrl = 'noImage.jpg'
-        }
+        };
 
-        console.log(car);
         try {
-            console.log('Error creating record');
-            await req.storage.createCar(car);
+            await req.accessory.createAccessory(accessory);
             res.redirect('/');
 
         } catch (error) {
+            console.log('Error creating accessory')
             console.log(error.message);
-            res.redirect('/create');
+            res.redirect('/accessory');
         }
 
     }

@@ -23,6 +23,7 @@ module.exports = {
             res.redirect('/');
 
         } catch (error) {
+            console.log(error.message);
             res.redirect('/404');
         }
     }

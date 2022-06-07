@@ -28,9 +28,7 @@ async function getAll(query) {
         }
     oprions.price.$lte = Number(query.to);
     }
-
-    console.log(options);
-
+    
     const cars = await Car.find(options);
     return cars.map(carViewModel);
 }
@@ -56,7 +54,13 @@ async function deleteById(id) {
 }
 
 async function updateById(id, car) {
-    await Car.findOneAndReplace(id, car);
+    const currCar = Car.findById(id)
+    currCar.name = car.name
+    currCar.imageUrl = car.imageUrl || undefined
+    currCar.description = car.description
+    currCar.price = car.price
+
+    await currCar.save();
 }
 
 function nextId() {
