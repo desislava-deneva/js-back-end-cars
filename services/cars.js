@@ -8,6 +8,7 @@ function carViewModel(car) {
         description: car.description,
         imageUrl: car.imageUrl,
         price: car.price,
+        accessories: car.accessories
     };
 }
 
@@ -15,20 +16,20 @@ async function getAll(query) {
     const options = {};
 
     if (query.search) {
-        options.name  = new RegExp(query.search, 'i');
+        options.name = new RegExp(query.search, 'i');
     }
 
     if (query.from) {
-        options.price = {$gte : Number(query.from)};
+        options.price = { $gte: Number(query.from) };
     }
 
     if (query.to) {
-        if(!oprions.price){
+        if (!oprions.price) {
             oprions.price = {};
         }
-    oprions.price.$lte = Number(query.to);
+        oprions.price.$lte = Number(query.to);
     }
-    
+
     const cars = await Car.find(options);
     return cars.map(carViewModel);
 }
@@ -59,12 +60,16 @@ async function updateById(id, car) {
     currCar.imageUrl = car.imageUrl || undefined
     currCar.description = car.description
     currCar.price = car.price
+    currCar.accessories = car.accessories
 
     await currCar.save();
 }
 
-function nextId() {
-    return 'xxxxxxxx-xxxx'.replace(/x/g, () => (Math.random() * 16 | 0).toString(16))
+async function attachAccessories(carId, accessoryId) {
+    const currCar = await Car.findById(carId);
+    currCar.accessories.push(accessoryId);
+    console.log(currCar);
+
 }
 
 module.exports = () => (req, res, next) => {
@@ -73,7 +78,8 @@ module.exports = () => (req, res, next) => {
         getById,
         createCar,
         deleteById,
-        updateById
+        updateById, 
+        attachAccessories
     };
     next();
 }
