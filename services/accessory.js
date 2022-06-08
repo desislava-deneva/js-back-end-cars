@@ -12,9 +12,7 @@ function mapToViewModel(accessory) {
 
 async function getAll() {
   const data = await Accessory.find({});
-  return await data.map(mapToViewModel);
-
-  // return await Accessory.find({})
+  return  data.map(mapToViewModel);
 }
 
 async function createAccessory(accessory) {

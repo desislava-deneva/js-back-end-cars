@@ -5,7 +5,7 @@
     {{#if accessories}}
     <form action="/attach/{{car.id}}" method="POST">
         <label for="accessory">Accessories</label>
-        <select id="accessory" name="accessory" />
+        <select id="accessory" name="accessory"/>
         {{#each accessories}}
         <option value="{{id}}">{{name}}</option>
         {{/each}}

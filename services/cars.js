@@ -1,7 +1,7 @@
 const Car = require('../models/Car');
 
 function carViewModel(car) {
-    console.log();
+    
     return {
         id: car._id,
         name: car.name,
@@ -69,7 +69,6 @@ async function attachAccessories(carId, accessoryId) {
     const currCar = await Car.findById(carId);
     currCar.accessories.push(accessoryId);
     console.log(currCar);
-
 }
 
 module.exports = () => (req, res, next) => {

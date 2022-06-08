@@ -10,4 +10,4 @@ const accsesotyShema = new Schema({
 
 const Accsessory = model('Accsessory', accsesotyShema);
 
-module.exports = Accsessory;
+module.exports = Accsessory; 

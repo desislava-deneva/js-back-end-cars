@@ -43,14 +43,13 @@ const initDb = require('./models/index');
 const carService = require('./services/cars');
 const accessoryService = require('./services/accessory');
 
-
 const { home } = require('./controlers/home');
 const { about } = require('./controlers/about');
 const create = require('./controlers/create');
 const { details } = require('./controlers/details');
 const editCar = require('./controlers/edit');
 const deleteCar = require('./controlers/delete');
-const accsessory = require('./controlers/accsessory');
+const accsessory = require('./controlers/accessory');
 const attach = require('./controlers/attach');
 
 

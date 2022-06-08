@@ -8,7 +8,6 @@ module.exports = {
             description: req.body.description,
             imageUrl: req.body.imageUrl || undefined,
             price: Number(req.body.price),
-
         };
 
         try {
