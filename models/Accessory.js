@@ -4,10 +4,10 @@ const accsesotyShema = new Schema({
     name: { type: String, required: true },
     description: { type: String, default: '' },
     imageUrl: { type: String, default: 'noImage.jpg' },
-    price: { type: Number, min: 0 }
+    price: { type: Number, min: 0 }, 
 });
 
 
-const Accsessory = model('Accsessory', accsesotyShema);
+const Accessory = model('Accessory', accsesotyShema);
 
-module.exports = Accsessory; 
+module.exports = Accessory; 

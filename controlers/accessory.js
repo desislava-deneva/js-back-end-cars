@@ -1,6 +1,6 @@
 module.exports = {
     get(req, res) {
-        res.render('createAccessory', { title: 'Create Accsessory' })
+        res.render('createAccessory', { title: 'Create Accessory' })
     },
     async post(req, res) {
         const accessory = {

@@ -15,7 +15,7 @@ module.exports = {
             name: req.body.name,
             description: req.body.description,
             imageUrl: req.body.imageUrl,
-            price: Number(req.body.price)
+            price: Number(req.body.price),
         }
 
         try {

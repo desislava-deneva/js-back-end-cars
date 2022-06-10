@@ -9,6 +9,7 @@ module.exports = {
                 req.accessory.getAll()
             ]);
 
+
             res.render('attach', { title: 'Attach Accessory', car, accessories });
 
         } catch (error) {
@@ -16,18 +17,19 @@ module.exports = {
             res.redirect('404')
         }
     },
-
     async post(req, res) {
         const carId = req.params.id
-        const accessoryId = req.body.accessory;
+        const accessoryId = await req.body.accessory;
+
+        
 
         try {
-            await req.storage.attachAccessories(carId,accessoryId )
+            await req.storage.attachAccessories(carId, accessoryId)
             res.redirect('/');
         } catch (error) {
             console.log('Error creating accessory')
             console.log(error.message);
-            res.redirect(`/attach/${ carId }`);
+            res.redirect(`/attach/${carId}`);
         }
     }
 }

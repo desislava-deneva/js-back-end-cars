@@ -55,20 +55,21 @@ async function deleteById(id) {
 }
 
 async function updateById(id, car) {
-    const currCar = Car.findById(id)
-    currCar.name = car.name
-    currCar.imageUrl = car.imageUrl || undefined
-    currCar.description = car.description
-    currCar.price = car.price
-    currCar.accessories = car.accessories
+    const existing = await Car.findById(id)
+    existing.name = car.name
+    existing.imageUrl = car.imageUrl || undefined
+    existing.description = car.description
+    existing.price = car.price
+    existing.accessories = car.accessories
 
-    await currCar.save();
+    await existing.save();
 }
 
 async function attachAccessories(carId, accessoryId) {
     const currCar = await Car.findById(carId);
     currCar.accessories.push(accessoryId);
-    console.log(currCar);
+
+    await currCar.save();
 }
 
 module.exports = () => (req, res, next) => {
