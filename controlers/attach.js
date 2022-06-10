@@ -9,8 +9,11 @@ module.exports = {
                 req.accessory.getAll()
             ]);
 
+            const exixting = car.accessories.map(a=>a.id.toString());
+            const aveilableAccessories = accessories.filter(a=> exixting.includes(a.id.toString()) == false)
 
-            res.render('attach', { title: 'Attach Accessory', car, accessories });
+
+            res.render('attach', { title: 'Attach Accessory', car, accessories: aveilableAccessories });
 
         } catch (error) {
             console.log(error.message);

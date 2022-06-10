@@ -1,16 +1,7 @@
 const Car = require('../models/Car');
 
-function carViewModel(car) {
-    
-    return {
-        id: car._id,
-        name: car.name,
-        description: car.description,
-        imageUrl: car.imageUrl,
-        price: car.price,
-        accessories: car.accessories
-    };
-}
+const models = require('../services/util')
+
 
 async function getAll(query) {
     const options = {};
@@ -31,14 +22,14 @@ async function getAll(query) {
     }
 
     const cars = await Car.find(options);
-    return cars.map(carViewModel);
+    return cars.map(models.carViewModel);
 }
 
 async function getById(id) {
-    const car = await Car.findById(id);
+    const car = await Car.findById(id).populate('accessories');
 
     if (car) {
-        return carViewModel(car)
+        return models.carViewModel(car)
     } else {
         return undefined;
     }
