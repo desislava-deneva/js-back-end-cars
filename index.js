@@ -33,7 +33,7 @@
 //--[x] upgrade details to include accessory
 //--[x] add session middlewere and auth libraries
 //--[x] controller with login register logout actions
-//--[] protect routes to owner , edit 
+//--[x] protect routes  
 
 //[x] add frond-end code 
 //[x] add database connection
@@ -67,6 +67,7 @@ const register = require('./controlers/register');
 const logout = require('./controlers/logout')
 
 const { notFound } = require('./controlers/404');
+const { isLoggedIn } = require('./services/util');
 
 start();
 
@@ -106,24 +107,24 @@ async function start() {
 
 
     app.route('/create')
-        .get(create.get)
-        .post(create.post)
+        .get(isLoggedIn(), create.get)
+        .post(isLoggedIn(), create.post)
 
     app.route('/delete/:id')
-        .get(deleteCar.get)
-        .post(deleteCar.post)
+        .get(isLoggedIn(), deleteCar.get)
+        .post(isLoggedIn(), deleteCar.post)
 
     app.route('/edit/:id')
-        .get(editCar.get)
-        .post(editCar.post)
+        .get(isLoggedIn(), editCar.get)
+        .post(isLoggedIn(), editCar.post)
 
     app.route('/accessory')
-        .get(accsessory.get)
-        .post(accsessory.post);
+        .get(isLoggedIn(), accsessory.get)
+        .post(isLoggedIn(), accsessory.post);
 
     app.route('/attach/:id')
-        .get(attach.get)
-        .post(attach.post);
+        .get(isLoggedIn(), attach.get)
+        .post(isLoggedIn(), attach.post);
 
     app.get('/logout', logout.get)
 
