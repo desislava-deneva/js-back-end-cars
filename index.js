@@ -42,7 +42,7 @@
 //[x] add validation rules to Car model
 //[x] create Accsessory models
 //[x] create User model
-//[] add owner property to Car , Acessory models
+//[x] add owner property to Car , Acessory models
 
 const express = require('express')
 const hbs = require(`express-handlebars`);
