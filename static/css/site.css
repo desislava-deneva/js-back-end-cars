@@ -11,8 +11,7 @@ header ul {
 }
 
 img {
-   max-height: 200px;
-    max-width: 200px ;
+    height: 200px;
     width: auto;
 }
 
@@ -33,7 +32,7 @@ header {
     list-style-type: none;
     margin: auto;
     padding: 0;
-    background-color: #d14c0e;
+    background-color: #607588;
 }
 
 header ul li {
@@ -75,11 +74,10 @@ div.cube {
     background: white;
     width: 23%;
     vertical-align: top;
-    width:  250px;
 }
 
 div.cube:hover p.name {
-    background: #9e948f;
+    background: #607588;
     color: white;
 }
 
@@ -92,16 +90,6 @@ p.name {
     border-bottom: 1px solid #2b415433;
 }
 
-button:hover {
-    background-color: #9e948f;
-    color: white;
-    cursor: pointer;
-}
-
-.btn:hover{
-    background-color: #9e948f;
-
-}
 
 button, main a.btn {
     border: none;
@@ -110,16 +98,26 @@ button, main a.btn {
     text-decoration: none;
     display: inline-block;
     font-size: 18px;
-    width: 43%;
+    width: 35%;
     margin: 12px;
-    margin-left: 6%;
     border-radius: 4px;
-    background: #d14c0e;
+    background: #607588;
     color: white;
 }
 
+.details a.btn{
+    width: 28%;
+}
 
+button:hover {
+    background-color: #0B2133;
+    color: white;
+    cursor: pointer;
+}
 
+a.btn:hover{
+    text-decoration: underline;
+}
 
 a {
     text-decoration: underline;
@@ -158,7 +156,7 @@ div.about a {
 }
 
 form label {
-    background: #d14c0e;
+    background: #607588;
     color: white;
     padding: 12px;
     border-top-left-radius: 4px;
@@ -167,6 +165,7 @@ form label {
 
 input[type=text],
 input[type=number],
+input[type=password],
 select,
 textarea {
     width: 100%;
@@ -187,7 +186,7 @@ input.search {
 }
 
 input[type=submit] {
-    background-color: #d14c0e;
+    background-color: #545775;
     border: none;
     padding: 8px;
     text-align: center;
@@ -202,7 +201,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    background-color: #9e948f;
+    background-color: #718F94;
     cursor: pointer;
 }
 
@@ -239,8 +238,21 @@ h2{
     text-align: center;
 }
 
+.accessories .accessory{
+    display: inline-block;
+    background-color: #f3f3f2;
+    width: 20%;
+    padding: 1%;
+    margin: 1%;
+}
+
+.accessories, .italic{
+    text-align: center;
+    font-style: italic;
+}
+
 footer {
-    background: #d14c0e;
+    background: #607588;
     padding: 1em;
     text-align: center;
     color: white;
@@ -249,7 +261,6 @@ footer {
 
 /*Animations & Transitions
 */
-
 
 @-webkit-keyframes fadeOut {
     from {
@@ -270,12 +281,3 @@ footer {
         opacity: 0;
     }
 }
-
-.description  {
-    display: none;
-}
-
-.description p {
-    margin: 10px;
-}
-

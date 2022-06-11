@@ -54,6 +54,8 @@ const attach = require('./controlers/attach');
 
 
 const { notFound } = require('./controlers/404');
+const { login } = require('./controlers/login');
+const { register } = require('./controlers/register');
 start();
 
 async function start() {
@@ -75,6 +77,8 @@ async function start() {
     app.get('/', home)
     app.get('/about', about);
     app.get('/details/:id', details);
+    app.get('/login', login);
+    app.get('/register', register)
 
     app.route('/create')
         .get(create.get)
