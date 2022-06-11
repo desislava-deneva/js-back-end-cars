@@ -11,9 +11,14 @@
 //--[x] edit
 //--[x] delete
 //--[x] search
-//--[] accessory read
-//--[] accessory create
-//--[] attach accessory
+//--[x] accessory read
+//--[x] accessory create
+//--[x] attach accessory
+//--[] register service
+//--[] login service
+//--[] logout service
+//--[] add authorization chek to data modification
+
 
 // implement controllers
 //--[x] home (catalog)
@@ -23,25 +28,32 @@
 //--[x] improved home search
 //--[x] edit 
 //--[x] delete 
-//--[] create accsssory
-//--[] attach accsesoty to car
-//--[] upgrade details to include accessory
+//--[x] create accsssory
+//--[x] attach accsesoty to car
+//--[x] upgrade details to include accessory
+//--[] add session middlewere and auth libraries
+//--[] auth controller with login register logout actions
+//--[] protect routes to owner , edit 
+
 
 //[x] add frond-end code 
 //[x] add database connection
-//[x] create car model
+//[x] create Car model
 //[x] upgrade car servise to use Car model
 //[x] add validation rules to Car model
-
 //[x] create Accsessory models
-
+//[] create User model
+//[] add owner property to Car , Acessory models
+//[] 
 const express = require('express')
 const hbs = require(`express-handlebars`);
+const session = require('express-session')
 
 const initDb = require('./models/index');
 
 const carService = require('./services/cars');
 const accessoryService = require('./services/accessory');
+const authService = require('./services/authService')
 
 const { home } = require('./controlers/home');
 const { about } = require('./controlers/about');
@@ -51,11 +63,11 @@ const editCar = require('./controlers/edit');
 const deleteCar = require('./controlers/delete');
 const accsessory = require('./controlers/accessory');
 const attach = require('./controlers/attach');
-
+const login = require('./controlers/login');
+const register = require('./controlers/register');
 
 const { notFound } = require('./controlers/404');
-const { login } = require('./controlers/login');
-const { register } = require('./controlers/register');
+
 start();
 
 async function start() {
@@ -68,17 +80,29 @@ async function start() {
     }).engine);
 
     app.set('view engine', '.hbs');
-
+    app.use(session({
+        secret: 'my super duper secret',
+        resave: true,
+        saveUninitialized: true,
+        cookie: { secure: 'auto' }
+    }));
     app.use(express.urlencoded({ extended: true }));
     app.use('/static', express.static('static'));
     app.use(carService());
     app.use(accessoryService());
+    app.use(authService())
 
     app.get('/', home)
     app.get('/about', about);
     app.get('/details/:id', details);
-    app.get('/login', login);
-    app.get('/register', register)
+    app.route('/login')
+        .get(login.get)
+        .post(login.post)
+
+    app.route('/register')
+        .get(register.get)
+        .post(register.post)
+
 
     app.route('/create')
         .get(create.get)
@@ -93,12 +117,12 @@ async function start() {
         .post(editCar.post)
 
     app.route('/accessory')
-    .get(accsessory.get)
-    .post(accsessory.post);
+        .get(accsessory.get)
+        .post(accsessory.post);
 
     app.route('/attach/:id')
-    .get(attach.get)
-    .post(attach.post);
+        .get(attach.get)
+        .post(attach.post);
 
 
     // app.get('/create', create.get);

@@ -16,8 +16,7 @@ module.exports = {
             car.imageUrl = 'noImage.jpg'
         }
 
-        console.log(car);
-        try {
+         try {
             console.log('Error creating record');
             await req.storage.createCar(car);
             res.redirect('/');

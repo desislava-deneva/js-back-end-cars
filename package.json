@@ -18,9 +18,13 @@
   "homepage": "https://github.com/desislava-deneva/js-back-end-cars#readme",
   "description": "",
   "dependencies": {
+    "alert": "^5.0.12",
+    "bcrypt": "^5.0.1",
     "express": "^4.17.3",
     "express-handlebars": "^6.0.5",
+    "express-session": "^1.17.3",
     "mongoose": "^6.3.5",
-    "mongose": "^0.0.2-security"
+    "mongose": "^0.0.2-security",
+    "popups": "^1.1.3"
   }
 }
