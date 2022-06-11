@@ -14,9 +14,9 @@
 //--[x] accessory read
 //--[x] accessory create
 //--[x] attach accessory
-//--[] register service
-//--[] login service
-//--[] logout service
+//--[x] register service
+//--[x] login service
+//--[x] logout service
 //--[] add authorization chek to data modification
 
 
@@ -31,10 +31,9 @@
 //--[x] create accsssory
 //--[x] attach accsesoty to car
 //--[x] upgrade details to include accessory
-//--[] add session middlewere and auth libraries
-//--[] auth controller with login register logout actions
+//--[x] add session middlewere and auth libraries
+//--[x] controller with login register logout actions
 //--[] protect routes to owner , edit 
-
 
 //[x] add frond-end code 
 //[x] add database connection
@@ -42,9 +41,9 @@
 //[x] upgrade car servise to use Car model
 //[x] add validation rules to Car model
 //[x] create Accsessory models
-//[] create User model
+//[x] create User model
 //[] add owner property to Car , Acessory models
-//[] 
+
 const express = require('express')
 const hbs = require(`express-handlebars`);
 const session = require('express-session')
@@ -65,6 +64,7 @@ const accsessory = require('./controlers/accessory');
 const attach = require('./controlers/attach');
 const login = require('./controlers/login');
 const register = require('./controlers/register');
+const logout = require('./controlers/logout')
 
 const { notFound } = require('./controlers/404');
 
@@ -95,6 +95,7 @@ async function start() {
     app.get('/', home)
     app.get('/about', about);
     app.get('/details/:id', details);
+
     app.route('/login')
         .get(login.get)
         .post(login.post)
@@ -124,6 +125,7 @@ async function start() {
         .get(attach.get)
         .post(attach.post);
 
+    app.get('/logout', logout.get)
 
     // app.get('/create', create.get);
     // app.get('/create', create.post);

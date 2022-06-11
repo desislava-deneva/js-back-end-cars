@@ -4,7 +4,6 @@ module.exports = {
     },
     async post(req, res) {
         if (req.body.username == '' || req.body.password == '') {
-            console.log('yes');
             return res.redirect('/register')
         }
 
