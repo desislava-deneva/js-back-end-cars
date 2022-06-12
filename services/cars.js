@@ -41,8 +41,16 @@ async function createCar(car) {
 
 }
 
-async function deleteById(id) {
-    await Car.findByIdAndDelete(id)
+async function deleteById(id, ownerId) {
+    const existing = await Car.findById(id);
+
+    if (existing.owner != ownerId) {
+        return false;
+    } 
+
+    await Car.findByIdAndDelete(id);
+
+    return true
 }
 
 async function updateById(id, car, ownerId) {
@@ -50,7 +58,7 @@ async function updateById(id, car, ownerId) {
 
     if (existing.owner != ownerId) {
         return false;
-    }
+    } 
 
     existing.name = car.name;
     existing.description = car.description;
@@ -59,14 +67,23 @@ async function updateById(id, car, ownerId) {
     existing.accessories = car.accessories;
 
     await existing.save();
+    
     return true;
 }
 
-async function attachAccessories(carId, accessoryId) {
+
+
+async function attachAccessories(carId, accessoryId, ownerId) {
     const currCar = await Car.findById(carId);
+    if (currCar.owner != ownerId) {
+        return false;
+    } 
     currCar.accessories.push(accessoryId);
 
     await currCar.save();
+
+    return true;
+
 }
 
 module.exports = () => (req, res, next) => {
@@ -76,7 +93,7 @@ module.exports = () => (req, res, next) => {
         createCar,
         deleteById,
         updateById,
-        attachAccessories
+        attachAccessories,
     };
     next();
 }

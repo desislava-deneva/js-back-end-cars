@@ -17,7 +17,7 @@
 //--[x] register service
 //--[x] login service
 //--[x] logout service
-//--[] add authorization chek to data modification
+//--[x] add authorization chek to data modification
 
 
 // implement controllers

@@ -2,8 +2,9 @@ module.exports = {
     async get(req, res) {
         const id = req.params.id;
         const car = await req.storage.getById(id)
-        
+
         if (car.owner != req.session.user.id) {
+            console.log('User is not owner');
             return res.redirect('/login');
         }
 
