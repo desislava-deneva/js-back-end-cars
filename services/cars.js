@@ -45,15 +45,21 @@ async function deleteById(id) {
     await Car.findByIdAndDelete(id)
 }
 
-async function updateById(id, car) {
-    const existing = await Car.findById(id)
-    existing.name = car.name
-    existing.imageUrl = car.imageUrl || undefined
-    existing.description = car.description
-    existing.price = car.price
-    existing.accessories = car.accessories
+async function updateById(id, car, ownerId) {
+    const existing = await Car.findById(id);
+
+    if (existing.owner != ownerId) {
+        return false;
+    }
+
+    existing.name = car.name;
+    existing.description = car.description;
+    existing.imageUrl = car.imageUrl;
+    existing.price = car.price;
+    existing.accessories = car.accessories;
 
     await existing.save();
+    return true;
 }
 
 async function attachAccessories(carId, accessoryId) {
@@ -69,7 +75,7 @@ module.exports = () => (req, res, next) => {
         getById,
         createCar,
         deleteById,
-        updateById, 
+        updateById,
         attachAccessories
     };
     next();
