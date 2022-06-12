@@ -1,23 +1,22 @@
-const { validationResult } = require("express-validator");
-
 module.exports = {
     get(req, res) {
         res.render('register', { title: 'Register' });
     },
     async post(req, res) {
+        if (req.body.username == '' || req.body.password == '') {
+            return res.redirect('/register')
+        }
 
-        const { errors } = validationResult(req);
+        if (req.body.password != req.body.repeatPassword) {
+            return res.redirect('/register')
+        }
 
         try {
-
-            if (errors.length > 0) {
-                throw errors;
-            }
             await req.auth.register(req.body.username, req.body.password);
-            res.redirect('/');
-        } catch (errors) {
-            console.error(errors);
-            res.render('register', { title: 'Register', errors, data: { username: req.body.username } })
+            res.redirect('/')
+        } catch (error) {
+            console.log(error.message);
+            res.redirect('/register')
         }
 
     }

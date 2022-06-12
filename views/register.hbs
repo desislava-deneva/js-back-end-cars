@@ -1,12 +1,5 @@
 <h1>Register Form</h1>
 <div class="form">
-    {{#if errors}}
-    <div>
-        {{#each errors}}
-        <p>{{msg}}</p>
-        {{/each}}
-    </div>
-    {{/if}}
     <form action="/register" method="POST">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" value="{{data.username}}">
