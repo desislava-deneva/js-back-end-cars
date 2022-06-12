@@ -100,15 +100,6 @@ async function start() {
     app.get('/about', about);
     app.get('/details/:id', details);
 
-    app.route('/login')
-        .get(login.get)
-        .post(login.post)
-
-    app.route('/register')
-        .get(register.get)
-        .post(register.post)
-
-
     app.route('/create')
         .get(isLoggedIn(), create.get)
         .post(isLoggedIn(), create.post)
@@ -129,10 +120,11 @@ async function start() {
         .get(isLoggedIn(), attach.get)
         .post(isLoggedIn(), attach.post);
 
-    app.get('/logout', logout.get)
 
-    // app.get('/create', create.get);
-    // app.get('/create', create.post);
+    app.use(login);
+    app.use(register);
+    app.use(logout);
+
 
 
     app.all('*', notFound)

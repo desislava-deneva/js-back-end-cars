@@ -26,8 +26,15 @@
 
       </ul>
     </header>
+    {{#if errors}}
+    <div id="notifications">
+      {{#each errors}}
+        <p>{{msg}}</p>
+      {{/each}}
+    </div>
+    {{/if}}
     <main>
-      {{{body}}}
+      {{{body}}} 
     </main>
   </div>
   <footer> &copy; Carbicle: Exercise for Express.js and Handlebars</footer>
