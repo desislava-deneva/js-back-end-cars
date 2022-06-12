@@ -34,6 +34,8 @@
 //--[x] add session middlewere and auth libraries
 //--[x] controller with login register logout actions
 //--[x] protect routes  
+//--[] only show buttons for record owner
+
 
 //[x] add frond-end code 
 //[x] add database connection
