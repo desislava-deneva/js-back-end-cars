@@ -34,7 +34,7 @@
 //--[x] add session middlewere and auth libraries
 //--[x] controller with login register logout actions
 //--[x] protect routes  
-//--[] only show buttons for record owner
+//--[x] only show buttons for record owner
 
 
 //[x] add frond-end code 
@@ -71,6 +71,8 @@ const logout = require('./controlers/logout')
 const { notFound } = require('./controlers/404');
 const { isLoggedIn } = require('./services/util');
 
+const { body } = require('express-validator')
+
 start();
 
 async function start() {
@@ -105,7 +107,19 @@ async function start() {
 
     app.route('/register')
         .get(register.get)
-        .post(register.post)
+        .post(
+            body('username').trim(),
+            body('username')
+            .notEmpty().withMessage('Username is required')
+            .isLength({ min: 3 }).withMessage('Username is must beleat 3 charecters long')
+            .isAlphanumeric().withMessage('Username may contains only letters and numbers'),
+            body('password')
+                .notEmpty().withMessage('Password is required')
+                .isLength({ min: 6 }).withMessage('Password is must least 3 charecters long'),
+            body('repeatPassword')
+            .custom((value, {req})=> value == req.body.password).withMessage("Password don't mach"),
+            register.post)
+
 
 
     app.route('/create')
