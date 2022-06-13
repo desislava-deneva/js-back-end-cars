@@ -13,11 +13,11 @@ router.post('/login', async (req, res) => {
     try {
         await req.auth.login(req.body.username, req.body.password);
         res.redirect('/')
-    } catch (error) {
-        console.error(error.message);
-        res.redirect('/login')
+    } catch (err) {
+        res.locals.errors = [{msg: err.message}]
+        console.error(err.message);
+        res.render('login', { title: 'Login' });
     }
-
 })
 
 module.exports = router;
