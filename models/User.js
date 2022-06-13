@@ -6,15 +6,23 @@ const userSchema = new Schema({
     hashedPassword: { type: String, required: true, minlength: 6 }
 });
 
+userSchema.index({ username: 1 }, {
+    unique: true,
+    collation: {
+        locale: 'en',
+        strength: 2,
+    }
+});
+
 userSchema.methods.comparePassword = async function (password) {
     return await comparePassword(password, this.hashedPassword);
 };
 userSchema.pre('save', async function (next) {
 
-   if( this.isModified('hashedPassword')){
-       console.log('hashing new password');
-       this.hashedPassword = await hashedPassword(this.hashedPassword)
-   }
+    if (this.isModified('hashedPassword')) {
+        console.log('hashing new password');
+        this.hashedPassword = await hashedPassword(this.hashedPassword)
+    }
 
     next()
 });
