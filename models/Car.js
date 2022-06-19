@@ -1,11 +1,11 @@
 const { Schema, model, Types: { ObjectId } } = require('mongoose');
 
 const carSchema = new Schema({
-    name: { type: String, required: true },
-    description: { type: String, default: '' },
+    name: { type: String, required: true, minlength:[3, 'Name must be least 3 charecters logn'] },
+    description: { type: String, default: '', minlength:[10, 'Description must be least 3 charecters logn'] },
     imageUrl: { type: String, default: 'noImage.jpg' },
-    price: { type: Number, required: true, min: 0 },
-    accessories: { type: [ObjectId], default: [], ref: 'Accessory' },
+    price: { type: Number, required: true, min: [1, 'Price must be least by 1'] },
+    accessories: { type: [ObjectId], default: [], ref: 'Accessory', minlength:[3, 'Accessory must be least 3 charecters logn'] },
     owner: { type: ObjectId, ref: 'User' }
 });
 

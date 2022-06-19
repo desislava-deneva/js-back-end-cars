@@ -6,7 +6,6 @@ router.get('/register', (req, res) => {
     res.render('register', { title: 'Register' });
 });
 
-
 router.post('/register',
     body('username').trim(),
     body('password').trim(),
