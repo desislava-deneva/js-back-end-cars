@@ -2,7 +2,7 @@ const { Schema, model, Types: { ObjectId } } = require('mongoose');
 const { comparePassword, hashedPassword } = require('../services/util')
 
 const userSchema = new Schema({
-    username: { type: String, required: true, minlength: [3, 'Username must be least 3 charecters long'] },
+    username: { type: String, required: true, minlength: [5, 'Username must be least 5 charecters long'] },
     hashedPassword: { type: String, required: true, minlength: 6 }
 });
 
